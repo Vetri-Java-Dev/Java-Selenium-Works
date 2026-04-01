@@ -9,7 +9,7 @@ public class FlipkartDemo {
 
     public static void main(String[] args) {
 
-        WebDriver driver = new FirefoxDriver();
+        WebDriver driver = new ChromeDriver();
 
         driver.get("https://www.flipkart.com/");
         System.out.println("Title: " + driver.getTitle());
