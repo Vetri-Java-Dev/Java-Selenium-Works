@@ -1,19 +1,13 @@
 package basic;
 
-import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 
 public class FlipkartDemo {
 
-    @Test
-    public void flipkartTest() {
-    	
-        EdgeOptions options = new EdgeOptions();
-        options.addArguments("--headless=new");
+    public static void main(String[] args) {
 
-        WebDriver driver = new EdgeDriver(options);
+        WebDriver driver = new EdgeDriver();
 
         driver.manage().window().maximize();
 
