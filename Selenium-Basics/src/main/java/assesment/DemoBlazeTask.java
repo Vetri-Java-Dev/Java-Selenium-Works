@@ -22,41 +22,41 @@ public class DemoBlazeTask {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginusername")))
                 .sendKeys("vetri1734");
-
+ 
         driver.findElement(By.id("loginpassword")).sendKeys("1234");
         driver.findElement(By.xpath("//button[text()='Log in']")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("logout2")));
         System.out.println("Login Successful");
 
-        Actions actions = new Actions(driver);
-        WebElement laptops = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Laptops']")));
+        Actions actions=new Actions(driver);
+        WebElement laptops=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Laptops']")));
         actions.moveToElement(laptops).click().perform();
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a[text()='Samsung galaxy s6']")));
 
-        List<WebElement> elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@id='tbodyid']//h4/a")));
+        List<WebElement> elements=wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@id='tbodyid']//h4/a")));
 
-        List<String> laptopList = new ArrayList<>();
+        List<String> laptopList=new ArrayList<>();
         for (WebElement element : elements) {
             laptopList.add(element.getText());
         }
 
         Collections.sort(laptopList);
 
-        Set<String> laptopSet = new LinkedHashSet<>(laptopList);
+        Set<String> laptopSet=new LinkedHashSet<>(laptopList);
 
         System.out.println("Sorted Laptop List:");
         for (String lap : laptopSet) {
             System.out.println(lap);
         }
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement macbook = driver.findElement(By.xpath("//a[text()='MacBook Pro']"));
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        WebElement macbook=driver.findElement(By.xpath("//a[text()='MacBook Pro']"));
 
         js.executeScript("arguments[0].scrollIntoView(true);", macbook);
 
-        String productTitle = macbook.getText();
+        String productTitle=macbook.getText();
         System.out.println("Found Laptop : " + productTitle);
 
         macbook.click();
@@ -72,11 +72,9 @@ public class DemoBlazeTask {
 
         driver.findElement(By.id("cartur")).click();
 
-        WebElement name = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[2]"))
-        );
+        WebElement name=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[2]")));
 
-        WebElement price = driver.findElement(By.xpath("//td[3]"));
+        WebElement price=driver.findElement(By.xpath("//td[3]"));
 
         System.out.println("Product Name: " + name.getText());
         System.out.println("Product Price: " + price.getText());
@@ -85,6 +83,7 @@ public class DemoBlazeTask {
         driver.findElement(By.xpath("//button[text()='Place Order']")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("name"))).sendKeys("Vetri");
+        
         driver.findElement(By.id("country")).sendKeys("India");
         driver.findElement(By.id("city")).sendKeys("Chennai");
         driver.findElement(By.id("card")).sendKeys("123456");
@@ -93,11 +92,11 @@ public class DemoBlazeTask {
 
         driver.findElement(By.xpath("//button[text()='Purchase']")).click();
 
-        WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'sweet-alert')]")));
+        WebElement confirm=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[10]/h2")));
 
-        String purchase = confirm.getText();
+        String purchase=confirm.getText();
 
-        if (purchase.contains("Order Id")) {
+        if (purchase.contains("Thank you")) {
             System.out.println("Order is placed successfully");
             System.out.println(purchase);
         }
